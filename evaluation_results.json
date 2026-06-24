@@ -1,1 +1,192 @@
-
+{
+  "finetuned": {
+    "accuracy": 0.4333,
+    "macro_f1": 0.435,
+    "per_class": {
+      "Analytical Argument": {
+        "precision": 0.5,
+        "recall": 0.4286,
+        "f1": 0.4615,
+        "support": 14
+      },
+      "Hot Take": {
+        "precision": 0.4,
+        "recall": 0.5714,
+        "f1": 0.4706,
+        "support": 7
+      },
+      "Prediction": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "support": 2
+      },
+      "Reaction/Joke/Meme": {
+        "precision": 0.3333,
+        "recall": 0.2857,
+        "f1": 0.3077,
+        "support": 7
+      }
+    },
+    "confusion_matrix": [
+      [
+        6,
+        4,
+        1,
+        3
+      ],
+      [
+        2,
+        4,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1,
+        0
+      ],
+      [
+        3,
+        2,
+        0,
+        2
+      ]
+    ],
+    "wrong_predictions": [
+      {
+        "text": "I think it goes without saying that he absolutely maximized the teams and talents he had and coached the team to 4 titles. Does he want to take on the next challenge of rebuilding back to greatness once those legends are all gone? Does he get poached by another team to take over an established team? Does he take a break to enjoy his success and be with family?",
+        "true": "Analytical Argument",
+        "predicted": "Reaction/Joke/Meme"
+      },
+      {
+        "text": "The NBA Draft should be incredible TV. Instead, the league keeps botching it. I genuinely cannot get over how badly the NBA handles the draft every single year. Same thing with the lottery. There is so much drama sitting right there in the math, and they barely touch it.",
+        "true": "Hot Take",
+        "predicted": "Reaction/Joke/Meme"
+      },
+      {
+        "text": "I think there's a valid argument that \"compared to a replacement level in his position, Jokic is a bigger upgrade than any player ever\". Guards are expected to be strong, skilled offensive players; centers are not. So while I think it's too soon to crown him the offensive GOAT (even if it's become clear he has a valid argument), I think, if you account for \"standard positional strength\", he might well bring more offensive firepower over a replacement player than anyone ever",
+        "true": "Reaction/Joke/Meme",
+        "predicted": "Analytical Argument"
+      },
+      {
+        "text": "Kings drafted Marvin Bagley because he supposedly was going to be a better fit alongside DeAaron Fox.",
+        "true": "Analytical Argument",
+        "predicted": "Prediction"
+      },
+      {
+        "text": "These games have been too close, they have a deep bench and a great coach. We\u2019re in coin flip territory of who will win this series",
+        "true": "Reaction/Joke/Meme",
+        "predicted": "Analytical Argument"
+      },
+      {
+        "text": "I THINK NBA HISTORY IS RUINED. i personally believe that nba refs and adam silver ruined basketball history. you all dont understand how damaging this is, no statline has any value now.",
+        "true": "Reaction/Joke/Meme",
+        "predicted": "Hot Take"
+      },
+      {
+        "text": "The difference is there's actual clips of pat Beverly being dirty. Hell, probably entire compilations of it. Adam's doesn't have it. Your only \"evidence\" is just an example of how soft the nba was/is.",
+        "true": "Analytical Argument",
+        "predicted": "Reaction/Joke/Meme"
+      },
+      {
+        "text": "If we all start searching for Scott Foster Jail, Adam Silver corrupt because Scott Foster, etc., then can we embarrass Adam Silver into sidelining Foster so we can actually watch the finals?!",
+        "true": "Prediction",
+        "predicted": "Analytical Argument"
+      },
+      {
+        "text": "My nba top 10 all time list",
+        "true": "Analytical Argument",
+        "predicted": "Hot Take"
+      },
+      {
+        "text": "It has nothing to do with why the SEC has the best football schools. They have the best football because they get the best recruits.",
+        "true": "Reaction/Joke/Meme",
+        "predicted": "Hot Take"
+      },
+      {
+        "text": "I know this is a hot, hot take, but this might have been the best NBA season of Victor's career. Unanimous DPOY, all-star, third in MVP voting, and made it to the Finals. But Wemby just might not get there. It happened to Yao.",
+        "true": "Hot Take",
+        "predicted": "Analytical Argument"
+      },
+      {
+        "text": "Lol Lebron\u2019s numbers in 3 of the 5 games were largely put up after the Heat were getting blown out. Did you even bother to watch the 2014 finals? Lebron was not \u201cclearly the best player\u201d whatsoever after game 2 and his own team literally thought he quit",
+        "true": "Hot Take",
+        "predicted": "Analytical Argument"
+      },
+      {
+        "text": "\u201cTheyre two of the greatest players and teammates \u2026 It\u2019s bullshit. I love both of them and they deserve better.",
+        "true": "Analytical Argument",
+        "predicted": "Hot Take"
+      },
+      {
+        "text": "At that time, we said our starting lineups would be:",
+        "true": "Reaction/Joke/Meme",
+        "predicted": "Analytical Argument"
+      },
+      {
+        "text": "This is why it's so easy to dismiss the \"NBA sucks now lolz\" haters. We have literally never had more NBA level talent. Every team has multiple guys worth watching on a nightly basis, and parity has never been higher. People are tripping.",
+        "true": "Analytical Argument",
+        "predicted": "Hot Take"
+      },
+      {
+        "text": "He\u2019d be a watered down Draymond if he could protect the rim to a high level, even with his lack of a jumper or Drays IQ. He pushed the pace in transition well and while not as good a passer as Draymond, he was decent.",
+        "true": "Analytical Argument",
+        "predicted": "Hot Take"
+      },
+      {
+        "text": "They won't sell it to you in the store? That would be the last time I ever got Taco Bell. Have a little self respect. Don't jump through hoops for shitty tacos.",
+        "true": "Analytical Argument",
+        "predicted": "Reaction/Joke/Meme"
+      }
+    ]
+  },
+  "baseline": {
+    "type": "majority-class (always predicts Analytical Argument)",
+    "note": "Represents naive baseline and default-hyperparameter fine-tune collapse (no class weighting). Replace with Groq zero-shot LLM numbers if available from Milestone 4.",
+    "accuracy": 0.4667,
+    "macro_f1": 0.1591,
+    "per_class": {
+      "Analytical Argument": {
+        "precision": 0.4667,
+        "recall": 1.0,
+        "f1": 0.6364,
+        "support": 14
+      },
+      "Hot Take": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 7
+      },
+      "Prediction": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 2
+      },
+      "Reaction/Joke/Meme": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 7
+      }
+    }
+  },
+  "hyperparameters": {
+    "model": "distilbert-base-uncased",
+    "epochs": 10,
+    "learning_rate": 5e-05,
+    "batch_size": 16,
+    "max_length": 256,
+    "seed": 42,
+    "class_weighted_loss": true,
+    "note": "Default notebook is 3 epochs / 2e-5 / no class weights. Changed to 10 epochs / 5e-5 / weighted loss to address majority-class collapse caused by Prediction class imbalance (7.5% of dataset)."
+  },
+  "split": {
+    "train": 139,
+    "val": 31,
+    "test": 30
+  }
+}
