@@ -36,13 +36,13 @@ A post that makes a basketball-related claim and supports it with reasoning, evi
 
 ### Definition
 
-A post whose primary purpose is predicting a future outcome rather than explaining a current one.
+A post whose primary purpose is to forecast a specific future outcome — championship results, award winners, player development, career trajectories, or season finish. The distinguishing feature is temporal orientation: the post is primarily about what *will* happen, not what *is* or *has* happened. A prediction may or may not include supporting reasoning; the label is determined by whether a future outcome is being forecast, not by the quality of the argument.
 
 ### Examples
 
-1. "Victor Wembanyama will win multiple MVP awards before he turns 30."
+1. "Victor Wembanyama will win multiple MVP awards before he turns 30." *(unsupported forecast — still Prediction, not Hot Take, because it targets a future outcome)*
 
-2. "The Thunder will reach the NBA Finals within the next two seasons."
+2. "Luka will never win a championship playing this way because his style limits roster flexibility and forces teams into bad contracts." *(supported forecast — still Prediction, not Analytical Argument, because the claim centers on a future outcome)*
 
 ---
 
@@ -91,11 +91,15 @@ Some posts naturally sit near the boundary between two labels.
 
 ### Decision
 
-Analytical Argument
+Prediction
 
 ### Reason
 
-The primary purpose is explaining why an outcome may occur rather than simply forecasting the future.
+The claim centers on a future outcome (winning a championship). Even though reasoning is present, the post is forecasting what will happen — not explaining current dynamics for their own sake. Decision rule: if removing the future-tense claim would make the post pointless, it's a Prediction. An Analytical Argument stands on its own as an explanation of present or historical basketball; a Prediction uses reasoning in service of a forecast.
+
+### Contrast Case (Analytical Argument)
+
+"Luka's high usage rate makes roster construction more difficult because teammates have fewer opportunities to create." — This explains a current dynamic without centering a forecast. → Analytical Argument.
 
 ---
 
@@ -143,10 +147,17 @@ The statement is primarily emotional and does not attempt to justify its evaluat
 
 ## Annotation Rules for Ambiguous Cases
 
-1. If substantial reasoning is present, use Analytical Argument.
-2. If the focus is on a future outcome, use Prediction.
-3. If a strong opinion is stated without support, use Hot Take.
-4. If the comment is mainly emotional, humorous, sarcastic, or reactive, use Reaction / Joke / Meme.
+Apply these rules in order — the first rule that matches wins:
+
+1. If the post is primarily emotional, humorous, sarcastic, or reactive with no basketball argument, use **Reaction / Joke / Meme**.
+2. If the post's primary claim is about a *future* event or outcome (championship, award, development, season result), use **Prediction** — regardless of whether reasoning is present.
+3. If the post makes a present-tense or historical evaluative claim *with* supporting reasoning, evidence, or structured argument, use **Analytical Argument**.
+4. If the post makes a present-tense or historical evaluative claim *without* supporting reasoning, use **Hot Take**.
+
+Key distinctions:
+- **Prediction vs. Hot Take**: temporal. Future-oriented → Prediction. Present/historical → Hot Take.
+- **Prediction vs. Analytical Argument**: temporal. Future outcome as the main claim → Prediction. Current explanation as the main claim → Analytical Argument.
+- **Hot Take vs. Reaction**: intent. A Hot Take makes a *claim* (asserting something is true). A Reaction expresses a *feeling* (frustration, joy, disbelief).
 
 ---
 
@@ -154,9 +165,9 @@ The statement is primarily emotional and does not attempt to justify its evaluat
 
 ## Data Source
 
-Examples will be collected from public r/nba posts and comments.
+Examples will be collected from public r/nba posts and comments via manual browsing on Reddit. I will navigate directly to relevant threads, copy qualifying posts and top-level comments, and paste them into the dataset CSV by hand. No API or scraping tool will be used at this stage.
 
-Sources include:
+Thread types to draw from:
 
 * Game threads
 * Post-game threads
@@ -165,7 +176,7 @@ Sources include:
 * Team discussion threads
 * General NBA discussion posts
 
-Using multiple thread types should improve dataset diversity.
+Drawing from multiple thread types is intentional: game threads over-represent Reaction posts, prediction threads over-represent Forecasts, and comparison discussions over-represent Hot Takes and Analytical Arguments. Mixing thread types is necessary to hit the balanced 50-per-label target without artificially skewing the distribution.
 
 ---
 
@@ -228,9 +239,9 @@ This is important because missing Analytical Arguments would reduce the classifi
 
 ## Macro F1 Score
 
-Macro F1 treats all classes equally and balances precision and recall.
+Macro F1 treats all classes equally and balances precision and recall across all four labels.
 
-This is the primary metric because all four labels are important.
+This is the primary metric for two reasons. First, the target distribution is balanced (50 examples per class), so equal weighting is appropriate — no class dominates the dataset in a way that would make per-class weighting more informative. Second, all four discourse types are equally valuable to identify: a classifier that is excellent at finding Reactions but poor at finding Analytical Arguments is not useful for discourse quality analysis, even if its overall accuracy looks acceptable.
 
 ---
 
@@ -281,18 +292,17 @@ If generated examples cannot be classified consistently, I will revise my defini
 
 ## 2. Annotation Assistance
 
-I may use an LLM to generate preliminary labels for a batch of examples.
+I will use Claude to generate preliminary labels for each batch of collected examples before reviewing them myself. Using AI pre-labels speeds up annotation and surfaces cases where the model's reading differs from mine — those disagreements are often the most informative edge cases.
 
 Workflow:
 
-1. Collect examples.
-2. Generate AI label suggestions.
-3. Manually review every label.
-4. Correct mistakes before adding examples to the dataset.
+1. Collect a batch of 20–30 examples.
+2. Submit each example to Claude with the full label definitions and annotation rules, asking for a label and a one-sentence reason.
+3. Review every label manually, checking the stated reason against my own reading.
+4. Override any label where I disagree. Record the final label in the `label` column.
+5. Record the AI's suggestion in a separate `ai_prelabel` column (values: Analytical Argument, Prediction, Hot Take, Reaction/Joke/Meme, or blank if no pre-label was generated).
 
-A separate column called "AI_Prelabel" will indicate whether a label was initially suggested by AI.
-
-Final labels will always be determined through human review.
+Final labels will always be determined through human review. The `ai_prelabel` column will be used in post-hoc analysis to measure how often the AI and human labels agreed, and whether disagreements cluster around specific label pairs.
 
 ---
 
