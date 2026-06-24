@@ -145,6 +145,44 @@ The statement is primarily emotional and does not attempt to justify its evaluat
 
 ---
 
+## Edge Cases Encountered During Annotation (Milestone 3)
+
+### Annotation Edge Case 1: Prediction vs. Hot Take — mixed-tense post
+
+**Post:** "The Pacers are going to surprise everyone next season. They're going to be very bad. Halibuns is out of shape and Sialam is going to regress. Not to mention, Zubac is overrated."
+
+**Problem:** The main claims are future-oriented ("next season," "going to regress"), qualifying as Prediction. But "Zubac is overrated" is a present-tense Hot Take tacked on at the end.
+
+**Decision:** Prediction.
+
+**Rule:** When a post mixes present-tense and future-tense claims, label by the *dominant orientation*. The post's primary argument is about what will happen next season — the present-tense aside doesn't change that.
+
+---
+
+### Annotation Edge Case 2: Hot Take vs. Analytical Argument — single stat used as decoration
+
+**Post:** "The most impressive FT shooting season that I could find in terms of volume and efficiency is when Shai shot .905% from the line on 11 attempts per game. So in theory Shai should be known as the greatest FT shooter of all time."
+
+**Problem:** The post cites a specific, verifiable statistic (.905% on 11 attempts per game), which looks like evidence. But the conclusion — "greatest FT shooter of all time" — is a grandiose claim resting on a single cherry-picked data point.
+
+**Decision:** Hot Take.
+
+**Rule:** A single statistic selected to support a pre-existing conclusion is not the same as a structured argument. Analytical Arguments use evidence to *build* a case; Hot Takes use a statistic to *dress up* a claim. Ask: would this claim survive if you removed the stat? Here, the stat is the entire argument — and one FT-percentage season doesn't establish all-time greatness, so the evidence is decorative rather than reasoning.
+
+---
+
+### Annotation Edge Case 3: Prediction vs. Analytical Argument — conditional future claim
+
+**Post:** "If the Thunder go Back-to-Back, Shai is already the 2nd greatest SG ever. Over Wade. If OKC goes back to back, Shai will be a two time MVP and a two time Champion, with multiple seasons averaging 30+."
+
+**Problem:** The post makes a historical ranking claim ("2nd greatest SG ever") but frames it conditionally on a future outcome ("if the Thunder go Back-to-Back"). It includes evidence (MVP awards, championships, scoring average), which looks like an Analytical Argument.
+
+**Decision:** Prediction.
+
+**Rule:** The conditional "if X happens" anchors the post to a future outcome. Even though reasoning is present, the reasoning is entirely in service of the forecast — it doesn't stand on its own as an explanation of current or historical basketball. Apply the litmus test: if you removed the future condition, would the post still make sense? No — the whole point is evaluating what a future outcome would mean for legacy. → Prediction.
+
+---
+
 ## Annotation Rules for Ambiguous Cases
 
 Apply these rules in order — the first rule that matches wins:
@@ -208,6 +246,19 @@ If one label is underrepresented after collecting 200 examples:
 3. Document any remaining imbalance in the final report.
 
 No label should exceed 70% of the dataset.
+
+### Observed Imbalance (Milestone 3)
+
+After collection, the actual distribution across 200 examples is:
+
+| Label | Count | Share |
+|---|---|---|
+| Analytical Argument | 90 | 45.0% |
+| Hot Take | 50 | 25.0% |
+| Reaction / Joke / Meme | 45 | 22.5% |
+| Prediction | 15 | 7.5% |
+
+The Prediction class is significantly underrepresented. Many posts that appeared forward-looking on first read were actually present-tense evaluations (mislabeled) once the temporal orientation rule was applied strictly. The remaining 15 Prediction examples are high-confidence. This imbalance is a known risk for model performance on the Prediction class — see the Confusion Matrix section for expected impact.
 
 ---
 
